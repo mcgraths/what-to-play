@@ -30,7 +30,6 @@ playApp.controller('MainController', function($scope, bggApi){
 		$scope.loading = true;
 
 		for (var i = 0; i < MEMBERS.length; i++) {
-			console.log('Fetching collection for', MEMBERS[i]);
 			bggApi.getCollection(MEMBERS[i], function(err, results){
 				console.log(results);
 
@@ -50,7 +49,7 @@ playApp.controller('MainController', function($scope, bggApi){
 
 
 	$scope.addGameToCollection = function(game) {
-		console.log(game);
+
 		//is game already in collection?
 		if(_.findIndex($scope.gameCollection, { 'gameId': game.gameId}) > -1)
 			return;
@@ -116,30 +115,6 @@ playApp.controller('MainController', function($scope, bggApi){
 
 }); 	
 
-//Our todo directive <todo item="Object"></todo>
-// playApp.directive('todo', function() {
-//   return {
-//     restrict: 'E', //directive is for element only <todo></todo>
-//     scope: {
-//       self: '=item' //bind scope to the 'item' attribute of the element
-//     },
-//     controller: ['$scope', 'todoApi', function($scope, todoApi) {
-//     	$scope.completeTodo = function(self) {
-// 			self.done = true;
-// 		};
-//     }],
-//     templateUrl: 'templates/todo.html' //html template file
-//   };
-// });
-
-//Filter for formating the date using MomentJS
-playApp.filter('fromNow', function() {
-    return function(input) {
-      /* jshint ignore:start */
-      return moment(input).fromNow();
-      /* jshint ignore:end */
-    };
-});
 
 //Factory for interacting with BGG
 playApp.factory('bggApi', ['$http', function($http) {
