@@ -12,7 +12,9 @@ const MEMBERS = [
 var playApp = angular.module('playApp', []);
 
 playApp.controller('MainController', function($scope, bggApi){
-	$scope.members = MEMBERS.join(', ');
+	$scope.members = MEMBERS;
+	$scope.memberSelection =  _.clone(MEMBERS);
+
 	$scope.gameCollection = [];
 	$scope.loading = true;
 	$scope.sortType = 'name';
@@ -26,12 +28,13 @@ playApp.controller('MainController', function($scope, bggApi){
 
 	$scope.fetchCollections = function(){
 
+		//reset
+		$scope.gameCollection = [];
 		$scope.collectionsFetched = 0;
 		$scope.loading = true;
 
-		for (var i = 0; i < MEMBERS.length; i++) {
-			bggApi.getCollection(MEMBERS[i], function(err, results){
-				console.log(results);
+		for (var i = 0; i < $scope.memberSelection.length; i++) {
+			bggApi.getCollection($scope.memberSelection[i], function(err, results){
 
 				//process each game
 				for (var j = 0; j < results.length; j++) {
@@ -41,7 +44,7 @@ playApp.controller('MainController', function($scope, bggApi){
 				$scope.collectionsFetched++;
 
 				//if all games are loaded
-				if($scope.collectionsFetched === MEMBERS.length)
+				if($scope.collectionsFetched === $scope.memberSelection.length)
 					$scope.loading = false;
 			});
 		}
@@ -113,6 +116,21 @@ playApp.controller('MainController', function($scope, bggApi){
 
 		$scope.sortType = field;
 	};
+
+	$scope.toggleMember = function(member) {
+    	var idx = $scope.memberSelection.indexOf(member);
+
+	    // is currently selected
+	    if (idx > -1) {
+	      $scope.memberSelection.splice(idx, 1);
+	    }
+	    else { // is newly selected
+	      $scope.memberSelection.push(member);
+	    }
+
+    	console.log($scope.memberSelection);
+	    $scope.fetchCollections();
+	 };
 
 	//Init
 	$scope.fetchCollections();

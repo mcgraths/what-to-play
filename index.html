@@ -6,8 +6,8 @@
 <title>What to Play | A board game night decision maker.</title>
 <meta name="description" content="Webapp for figuring out board games to play from multiple player's collections. Uses BoardGameGeek for collection management.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet" href="assets/css/icomoon.css">
+<script src="https://use.fontawesome.com/14c1580efb.js"></script>
+<link rel="stylesheet" href="assets/css/icomoon.css">	
 <link rel="stylesheet" href="assets/css/style.css">
 
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -36,7 +36,7 @@
 	<header id="masthead" class="site-header" role="banner">
 		<div class="site-branding">
 			<h1 class="site-title">What to Play <i class="icon-dice"></i></h1>
-			<h3 class="site-description">Find out what to play or buy for your gaming group.<br>Showing games from {{members}}</h3>
+			<h3 class="site-description">Find out what to play or buy for your gaming group.<br>Showing games from {{members.join(', ')}}</h3>
 			<!-- <div id="download">
 				<a href="" class="button secondary">Download</a>
 			</div> -->
@@ -77,7 +77,17 @@
 				</div>
 			</div>
 
-			 
+			<div>
+		        <label ng-repeat="member in members">
+		         	<input
+					    type="checkbox"
+					    name="members[]"
+					    value="{{member}}"
+					    ng-checked="memberSelection.indexOf(member) > -1"
+					    ng-click="toggleMember(member)"
+					  > {{member}}
+		        </label>
+			</div>			 
 		</div>
 	</header><!-- #masthead -->
 
@@ -87,7 +97,7 @@
 				<article class="post">
 
 					<div class="loading" ng-show="loading">
-				  		Loading games...
+				  		<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 			  		</div>
 
 			  		<div class="results" ng-hide="loading">
