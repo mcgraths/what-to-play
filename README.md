@@ -23,3 +23,11 @@ const MEMBERS = [
 	'player2'
 ];
 ```
+
+## Configure Users
+
+If you want to configure the demo app to use *your* gaming group of friends you can edit the URL like so:
+
+`https://mcgraths.github.io/what-to-play/?users=username1|username2|username3`
+
+Replacing username1/2/3/etc with the BGG usernames of your friends.

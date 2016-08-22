@@ -6,14 +6,27 @@ var MEMBERS = [
 	'Jonstandring13'
 ];
 
+function getQueryStringValue (key) {  
+	return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+}
+
+function getMembers() {
+	var members = getQueryStringValue('members');
+
+	if(members)
+		return members.split("|");
+	else
+		return MEMBERS;
+}
+
 /*
 *   Angular App 
 */
 var playApp = angular.module('playApp', []);
 
 playApp.controller('MainController', function($scope, bggApi){
-	$scope.members = MEMBERS;
-	$scope.memberSelection =  _.clone(MEMBERS);
+	$scope.members = getMembers();
+	$scope.memberSelection =  _.clone($scope.members);
 
 	$scope.gameCollection = [];
 	$scope.loading = true;
@@ -49,7 +62,6 @@ playApp.controller('MainController', function($scope, bggApi){
 			});
 		}
 	};
-
 
 	$scope.addGameToCollection = function(game) {
 
@@ -130,6 +142,10 @@ playApp.controller('MainController', function($scope, bggApi){
 
 	    $scope.fetchCollections();
 	 };
+
+	function getQueryStringValue (key) {  
+  		return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+	}
 
 	//Init
 	$scope.fetchCollections();
