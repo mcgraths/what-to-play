@@ -1,0 +1,13 @@
+/* Header */
+.site-header {
+    @include clearfix;
+    .site-branding {}
+    .site-title {}
+    .site-description {}
+}
+
+.filters {
+	.col {
+		@include span-columns(4);
+	}
+}

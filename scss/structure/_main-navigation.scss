@@ -1,0 +1,20 @@
+/* Main Navigation */
+.main-navigation {
+    ul {
+        padding: 0 10px;
+        list-style: none;
+        & > li {
+            display: block;
+            position: relative;
+            @include media($max-width + 4em) {
+                @include inline-block;
+            }
+
+            & > a {
+                display: block;
+                padding: 15px 20px;
+                text-decoration: none;
+            }
+        }
+    }
+}

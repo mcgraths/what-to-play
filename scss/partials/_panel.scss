@@ -1,0 +1,14 @@
+.panel {
+    @extend %flash;
+    font-weight: normal;
+    background: lighten($base-border-color, 10);
+    border: 1px solid $base-border-color;
+    color: darken($light-gray, 60);
+    border-radius: $base-border-radius;
+    a {
+        color: darken($light-gray, 70);
+        &:hover {
+            color: darken($light-gray, 90);
+        }
+    }
+}

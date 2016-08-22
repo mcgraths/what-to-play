@@ -1,0 +1,26 @@
+/* Small menu */
+.menu-toggle,
+.main-navigation.toggled .nav-menu {
+    display: block;
+}
+
+.menu-toggle {
+	cursor: pointer;
+	color: #fff;
+	width: 100%;
+	@include pad();
+	text-align: right;
+}
+
+.main-navigation ul {
+    display: none;
+}
+
+@include media($max-width + 4em) {
+    .menu-toggle {
+        display: none;
+    }
+    .main-navigation ul {
+	    display: block;
+	}
+}

@@ -1,0 +1,6 @@
+.site-content {
+    @include clearfix;
+    padding: 40px 0;
+    .content-area {}
+    .widget-area {}
+}

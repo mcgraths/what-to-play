@@ -1,0 +1,11 @@
+// .my-icon:before {
+// 	content: '\f408';
+//         @include icon-rules;
+// }
+
+@mixin icon-rules {
+        display: inline-block;
+        -webkit-font-smoothing: antialiased;
+        font: normal 16px/1 'icomoon';
+        vertical-align: middle;
+}

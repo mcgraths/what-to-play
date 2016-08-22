@@ -1,0 +1,17 @@
+/* Post Entries */
+.post {
+    margin-bottom: em(24);
+}
+
+.entry-header {
+    margin-bottom: em(24);
+    .entry-title {}
+}
+
+.entry-content {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    word-wrap: break-word;
+}

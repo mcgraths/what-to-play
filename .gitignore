@@ -1,0 +1,6 @@
+.sass-cache
+_site/
+_includes/
+_layouts/
+_config.yml
+node_modules/

@@ -1,0 +1,120 @@
+/* Example styling for docs site */
+.main-navigation {
+    background: $base-accent-color;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid darken($base-accent-color, 5);
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 10;
+    ul {
+        @include outer-container;
+        & > li {
+            &.brand {
+                font-weight: 700;
+                font-size: em(20);
+                a {
+                    margin: 0;
+                    line-height: 1;
+                    padding-left: 0;
+                    &:hover {
+                        background: none;
+                    }
+                }
+            }
+            &.current > a {
+                color: #fff;
+                background: darken($base-accent-color, 5);
+            }
+            & > a {
+                color: lighten($base-accent-color, 35);
+                &:hover {
+                    color: #fff;
+                    background: darken($base-accent-color, 5);
+                }
+                &:active, &:focus {
+                    color: #fff;
+                    background: darken($base-accent-color, 5);
+                    outline: none;
+                }
+            }
+        }
+    }
+}
+
+.site-header {
+    background: $base-accent-color;
+    .site-branding {
+        @include outer-container;
+        padding: 140px 0 180px;
+        letter-spacing: -1px;
+        color: #fff;
+    }
+    .site-title {
+        font-size: em(100);
+        font-weight: 500;
+        // margin-bottom: em(5);
+        text-shadow: 0px 2px 2px darken($base-accent-color, 10);
+        a {
+            color: #fff;
+            &:hover {
+                color: lighten($base-accent-color, 35);
+            }
+            &:active, &:focus {
+                color: lighten($base-accent-color, 35);
+                outline: none;
+            }
+        }
+    }
+    .site-description {
+        font-weight: 200;
+        font-size: em(30);
+        margin-bottom: em(20);
+        a {
+            font-weight: 400;
+            color: lighten($base-accent-color, 30);
+            &:hover {
+                color: #fff;
+            }
+            &:active, &:focus {
+                color: #fff;
+                outline: none;
+            }
+        }
+    }
+    .page-header {
+        @include outer-container;
+        padding: 40px 0;
+        letter-spacing: -1px;
+        color: #fff;
+        .page-title {
+            font-size: em(60);
+        }
+    }
+    @include media($mobile) {
+        .site-branding {
+            padding: 50px 15px 40px;
+        }
+        .site-title {
+            font-size: em(48);
+        }
+        site-description {
+            font-size: em(14);
+        }
+    }
+}
+
+.site-footer {
+    .site-info {
+        text-align: center;
+        padding: 40px;
+    }
+}
+
+.row {
+    margin-bottom: 20px;
+    div {
+        background-color: lighten($base-accent-color, 45);
+        border: 1px solid $base-accent-color;
+        text-align: center;
+    }
+}

@@ -1,0 +1,9 @@
+/* Containers */
+.container,
+.site-content {
+	@include outer-container;
+	padding: 0 1em;
+	@include media($max-width + 4em) {
+        padding: 0;
+    }
+}

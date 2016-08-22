@@ -1,0 +1,22 @@
+.button {
+	background: transparent;
+    border: 3px solid #fff;
+	color: #fff;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 20px 60px;
+    @include inline-block;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    @include transition (all 0.2s ease-in-out);
+    &:hover {
+        background: #fff;
+        color: $base-accent-color;
+    }
+    @include media($mobile) {
+        width: 100%;
+        text-align: center;
+    }
+}
