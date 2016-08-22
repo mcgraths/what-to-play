@@ -4,10 +4,17 @@
     .site-branding {}
     .site-title {}
     .site-description {}
+    padding: 0 15px;
 }
 
 .filters {
+	@include outer-container
+
 	.col {
 		@include span-columns(4);
+
+		@include media($mobile) {
+		  @include span-columns(12);
+		}
 	}
 }

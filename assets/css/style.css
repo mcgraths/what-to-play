@@ -35,6 +35,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+strong {
+  font-weight: bold; }
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -455,7 +458,7 @@ video {
   .button:hover {
     background: #fff;
     color: #2ac56c; }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 800px) {
     .button {
       width: 100%;
       text-align: center; } }
@@ -586,7 +589,7 @@ video {
   .twelve:last-child {
     margin-right: 0; }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   .one,
   .two,
   .three,
@@ -625,20 +628,39 @@ video {
 
 /* Header */
 .site-header {
-  *zoom: 1; }
+  *zoom: 1;
+  padding: 0 15px; }
   .site-header:before, .site-header:after {
     content: " ";
     display: table; }
   .site-header:after {
     clear: both; }
 
-.filters .col {
-  float: left;
-  display: block;
-  margin-right: 2.3576515979%;
-  width: 31.7615656014%; }
-  .filters .col:last-child {
-    margin-right: 0; }
+.filters {
+  *zoom: 1;
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto; }
+  .filters:before, .filters:after {
+    content: " ";
+    display: table; }
+  .filters:after {
+    clear: both; }
+  .filters .col {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 31.7615656014%; }
+    .filters .col:last-child {
+      margin-right: 0; }
+    @media screen and (max-width: 800px) {
+      .filters .col {
+        float: left;
+        display: block;
+        margin-right: 2.3576515979%;
+        width: 100%; }
+        .filters .col:last-child {
+          margin-right: 0; } }
 
 /* Main Navigation */
 .main-navigation ul {
@@ -661,12 +683,16 @@ video {
 
 .site-content {
   *zoom: 1;
-  padding: 40px 0; }
+  padding: 40px 0;
+  padding: 15px; }
   .site-content:before, .site-content:after {
     content: " ";
     display: table; }
   .site-content:after {
     clear: both; }
+
+.subtle {
+  color: #999; }
 
 /* Post Entries */
 .post {
@@ -780,7 +806,7 @@ video {
       clear: both; }
     .site-header .page-header .page-title {
       font-size: 3.75em; }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 800px) {
     .site-header .site-branding {
       padding: 50px 15px 40px; }
     .site-header .site-title {

@@ -105,9 +105,13 @@ playApp.controller('MainController', function($scope, bggApi){
   		}
 
   		return true;
+	};
 
+	$scope.sortCollection = function(field){
+		if(field === $scope.sortType)
+			$scope.sortReverse = !$scope.sortReverse;
 
-
+		$scope.sortType = field;
 	};
 
 	//Init

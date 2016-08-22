@@ -24,7 +24,7 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div id="page" class="hfeed site">
+<div id="page" class="hfeed site" ng-cloak>
 	<nav id="site-navigation" class="main-navigation" role="navigation">
 		<div class="menu-toggle"><i class="icon-menu2"></i></div>
 		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
@@ -91,21 +91,23 @@
 			  		</div>
 
 			  		<div class="results" ng-hide="loading">
-					  <h1>Games</h1>
+					  
 
 					  <table cellspacing="0" cellpadding="0">
 					    <tr>
-					      <th>Rank</th>
-					      <th>Game</th>
+					      <th>#</th>
+					      <th ng-click="sortCollection('name')">Game</th>
 					      <th>Player Count</th>
-					      <th>Play Time</th>
-					      <th>Rating</th>
+					      <th ng-click="sortCollection('playingTime')">Play Time</th>
+					      <th ng-click="sortCollection('rank')">Rank</th>
+					      <th ng-click="sortCollection('averageRating')">Rating</th>
 					    </tr>
 					    <tr ng-repeat="game in gameCollection | filter: filterCollection | orderBy:sortType:sortReverse"">
-					    	<td>{{game.rank > 0 ? game.rank: '--'}}</td>
+					    	<td><span class="subtle">{{$index + 1}}</span></td>
 					      	<td><a target="_blank" href="https://boardgamegeek.com/boardgame/{{game.gameId}}">{{game.name}}</a></td>
 					      	<td>{{game.minPlayers}}-{{game.maxPlayers}}</td>
 					      	<td>{{game.playingTime}} min</td>
+					      	<td>{{game.rank > 0 ? game.rank: '--'}}</td>
 					      	<td>{{game.averageRating.toFixed(2)}}</td>
 					    </tr>
 					  </table>
