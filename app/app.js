@@ -2,8 +2,7 @@
 
 /* Gaming Group Members */
 const MEMBERS = [
-	'mcgraths',
-	'Jonstandring13'
+	
 ];
 
 /*
