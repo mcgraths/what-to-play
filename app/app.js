@@ -1,7 +1,7 @@
 'use strict';
 
 /* Gaming Group Members */
-const MEMBERS = [
+var MEMBERS = [
 	'mcgraths',
 	'Jonstandring13'
 ];
@@ -128,7 +128,6 @@ playApp.controller('MainController', function($scope, bggApi){
 	      $scope.memberSelection.push(member);
 	    }
 
-    	console.log($scope.memberSelection);
 	    $scope.fetchCollections();
 	 };
 
