@@ -3,7 +3,8 @@
 /* Gaming Group Members */
 var MEMBERS = [
 	'mcgraths',
-	'Jonstandring13'
+	'Jonstandring13',
+	'm477r33d'
 ];
 
 function getQueryStringValue (key) {  
@@ -66,16 +67,20 @@ playApp.controller('MainController', function($scope, bggApi){
 	$scope.addGameToCollection = function(game) {
 
 		//is game already in collection?
-		if(_.findIndex($scope.gameCollection, { 'gameId': game.gameId}) > -1)
+		if(_.findIndex($scope.gameCollection, { 'gameId': game.gameId}) > -1) {
+			game = _.find($scope.gameCollection, { 'gameId': game.gameId});
+			game.appearances++;
 			return;
+		}
 
+		game.appearances = 1; // How many times does is this owned or on a wishlist
 		$scope.gameCollection.push(game);
 	};
 
 	$scope.filterCollection = function(game) {
 
 		//Filter out exansions
-		if(game.isExpansion)
+		if($scope.mode === 'play' && game.isExpansion)
 			return false;
 
 		//Filter out items owned or items on wishlist		
@@ -142,10 +147,6 @@ playApp.controller('MainController', function($scope, bggApi){
 
 	    $scope.fetchCollections();
 	 };
-
-	function getQueryStringValue (key) {  
-  		return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
-	}
 
 	//Init
 	$scope.fetchCollections();

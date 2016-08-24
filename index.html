@@ -116,7 +116,10 @@
 					    </tr>
 					    <tr ng-repeat="game in gameCollection | filter: filterCollection | orderBy:sortType:sortReverse"">
 					    	<td><span class="subtle">{{$index + 1}}</span></td>
-					      	<td><a target="_blank" href="https://boardgamegeek.com/boardgame/{{game.gameId}}">{{game.name}}</a></td>
+					      	<td>
+					      		<a target="_blank" href="https://boardgamegeek.com/boardgame/{{game.gameId}}">{{game.name}}</a>
+					      		<span class="subtle" ng-if="game.appearances > 1">[{{game.appearances}}]</span>
+					      	</td>
 					      	<td>{{game.minPlayers}}-{{game.maxPlayers}}</td>
 					      	<td>{{game.playingTime}} min</td>
 					      	<td>{{game.rank > 0 ? game.rank: '--'}}</td>
