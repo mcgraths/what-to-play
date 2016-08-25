@@ -117,8 +117,9 @@
 					    <tr ng-repeat="game in gameCollection | filter: filterCollection | orderBy:sortType:sortReverse"">
 					    	<td><span class="subtle">{{$index + 1}}</span></td>
 					      	<td>
-					      		<a target="_blank" href="https://boardgamegeek.com/boardgame/{{game.gameId}}">{{game.name}}</a>
-					      		<span class="subtle" ng-if="game.appearances > 1">[{{game.appearances}}]</span>
+					      		<a target="_blank" href="https://boardgamegeek.com/boardgame/{{game.gameId}}" title="{{game.members.join(', ')}}">{{game.name}}</a>
+					      		<span class="subtle" ng-if="mode== 'play' && game.ownCount > 1" ">[{{game.ownCount}}]</span>
+					      		<span class="subtle" ng-if="mode== 'buy' && game.wishlistCount > 1"> [{{game.wishlistCount}}]</span>
 					      	</td>
 					      	<td>{{game.minPlayers}}-{{game.maxPlayers}}</td>
 					      	<td>{{game.playingTime}} min</td>

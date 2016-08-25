@@ -48,11 +48,11 @@ playApp.controller('MainController', function($scope, bggApi){
 		$scope.loading = true;
 
 		for (var i = 0; i < $scope.memberSelection.length; i++) {
-			bggApi.getCollection($scope.memberSelection[i], function(err, results){
+			bggApi.getCollection($scope.memberSelection[i], function(err, username, results){
 
 				//process each game
 				for (var j = 0; j < results.length; j++) {
-					$scope.addGameToCollection(results[j]);
+					$scope.addGameToCollection(results[j], username);
 				}
 
 				$scope.collectionsFetched++;
@@ -64,16 +64,44 @@ playApp.controller('MainController', function($scope, bggApi){
 		}
 	};
 
-	$scope.addGameToCollection = function(game) {
+	$scope.addGameToCollection = function(game, player) {
+
+		//only count games that players own or want to buy
+		if(!game.owned && !game.wantToBuy && !game.wishList) 
+			return;
 
 		//is game already in collection?
 		if(_.findIndex($scope.gameCollection, { 'gameId': game.gameId}) > -1) {
-			game = _.find($scope.gameCollection, { 'gameId': game.gameId});
-			game.appearances++;
+
+			var existingGame = _.find($scope.gameCollection, { 'gameId': game.gameId});
+
+			if(game.owned) {
+				existingGame.owned = true;
+	  			existingGame.ownCount++;
+			}
+
+	  		//If the mode is to buy
+	  		if(game.wantToBuy || game.wishList) {
+	  			existingGame.wishList = true;
+	  			existingGame.wishlistCount++;
+	  		}
+
+  			existingGame.members.push(player);
+
+
 			return;
 		}
 
-		game.appearances = 1; // How many times does is this owned or on a wishlist
+		// How many times does is this owned or on a wishlist
+		if(game.owned) 
+  			game.ownCount = 1;
+
+  		//If the mode is to buy
+  		if(game.wantToBuy || game.wishList) 
+  			game.wishlistCount = 1;
+
+  		game.members = [player];
+
 		$scope.gameCollection.push(game);
 	};
 
@@ -164,9 +192,9 @@ playApp.factory('bggApi', ['$http', function($http) {
 			  	method: 'GET',
 			  	url: enpoint + 'collection/' + username + '?grouped=false'
 			}).then(function successCallback(response) {
-			    return callback(null, response.data);
+			    return callback(null, username, response.data);
 			}, function errorCallback(response) {
-			    return callback(new Error('API Error'), null)
+			    return callback(new Error('API Error'), username, null)
 			});
 		}
 	};
