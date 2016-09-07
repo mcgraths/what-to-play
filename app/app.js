@@ -67,8 +67,8 @@ playApp.controller('MainController', function($scope, bggApi){
 	$scope.addGameToCollection = function(game, player) {
 
 		//only count games that players own or want to buy
-		if(!game.owned && !game.wantToBuy && !game.wishList) 
-			return;
+		//if(!game.owned && !game.wantToBuy && !game.wishList) 
+			//return;
 
 		//is game already in collection?
 		if(_.findIndex($scope.gameCollection, { 'gameId': game.gameId}) > -1) {
@@ -86,8 +86,14 @@ playApp.controller('MainController', function($scope, bggApi){
 	  			existingGame.wishlistCount++;
 	  		}
 
-  			existingGame.members.push(player);
+	  		//game ratings
+	  		if(game.rating && game.rating >= 0) {
+	  			existingGame.ratings = existingGame.ratings || [];
+	  			existingGame.ratings.push(game.rating);
+	  			existingGame.averageGroupRating = _.mean(existingGame.ratings);
+	  		}
 
+  			existingGame.members.push(player);
 
 			return;
 		}
@@ -99,6 +105,15 @@ playApp.controller('MainController', function($scope, bggApi){
   		//If the mode is to buy
   		if(game.wantToBuy || game.wishList) 
   			game.wishlistCount = 1;
+
+  		game.averageGroupRating = 0;
+
+  		//track game ratings
+  		if(game.rating && game.rating >= 0) {
+  			game.ratings = [];
+  			game.ratings.push(game.rating);
+  			game.averageGroupRating = _.mean(game.ratings);
+  		}
 
   		game.members = [player];
 
@@ -113,7 +128,7 @@ playApp.controller('MainController', function($scope, bggApi){
 
 		//Filter out items owned or items on wishlist		
 
-		//If we are looking for games to play and the game isn't owned, do display it
+		//If we are looking for games to play and the game isn't owned, don't display it
   		if($scope.mode === 'play' && !game.owned) 
   			return false;
 

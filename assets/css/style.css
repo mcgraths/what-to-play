@@ -698,6 +698,9 @@ video {
   padding: 80px;
   text-align: center; }
 
+.centered {
+  text-align: center; }
+
 /* Post Entries */
 .post {
   margin-bottom: 1.5em; }

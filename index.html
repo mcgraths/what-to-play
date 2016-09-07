@@ -109,10 +109,11 @@
 					    <tr>
 					      <th>#</th>
 					      <th ng-click="sortCollection('name')">Game</th>
-					      <th>Player Count</th>
-					      <th ng-click="sortCollection('playingTime')">Play Time</th>
-					      <th ng-click="sortCollection('rank')">Rank</th>
-					      <th ng-click="sortCollection('averageRating')">Rating</th>
+					      <th class="centered" >Player Count</th>
+					      <th class="centered" ng-click="sortCollection('playingTime')">Play Time</th>
+					      <th class="centered" ng-click="sortCollection('rank')">Rank</th>
+					      <th class="centered" ng-click="sortCollection('averageRating')">BGG Rating</th>
+					      <th class="centered" ng-click="sortCollection('averageGroupRating')">Group Rating</th>
 					    </tr>
 					    <tr ng-repeat="game in gameCollection | filter: filterCollection | orderBy:sortType:sortReverse"">
 					    	<td><span class="subtle">{{$index + 1}}</span></td>
@@ -121,10 +122,11 @@
 					      		<span class="subtle" ng-if="mode== 'play' && game.ownCount > 1" ">[{{game.ownCount}}]</span>
 					      		<span class="subtle" ng-if="mode== 'buy' && game.wishlistCount > 1"> [{{game.wishlistCount}}]</span>
 					      	</td>
-					      	<td>{{game.minPlayers}}-{{game.maxPlayers}}</td>
-					      	<td>{{game.playingTime}} min</td>
-					      	<td>{{game.rank > 0 ? game.rank: '--'}}</td>
-					      	<td>{{game.averageRating.toFixed(2)}}</td>
+					      	<td class="centered">{{game.minPlayers}}-{{game.maxPlayers}}</td>
+					      	<td class="centered">{{game.playingTime}} min</td>
+					      	<td class="centered">{{game.rank > 0 ? game.rank: '--'}}</td>
+					      	<td class="centered">{{game.averageRating.toFixed(2)}}</td>
+					      	<td class="centered"><span title="{{game.ratings.length || '0'}} Rating(s)">{{game.averageGroupRating || '--'}}</span></td>
 					    </tr>
 					  </table>
 			  		</div>
@@ -149,5 +151,18 @@
 <script src='//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js'></script>
 <script src="app/app.js"></script>
 <script src="assets/js/navigation.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-83812172-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 </body>
 </html>
