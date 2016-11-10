@@ -4,7 +4,8 @@
 var MEMBERS = [
 	'mcgraths',
 	'Jonstandring13',
-	'm477r33d'
+	'm477r33d',
+	'gregorjk'
 ];
 
 function getQueryStringValue (key) {  
